@@ -81,7 +81,7 @@ WSGI_APPLICATION = 'abckindergarten.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'static/db.sqlite3'),
+        'NAME': os.path.join('https://abckindergarten.herokuapp.com/static/db.sqlite3'),
     }
 }
 
