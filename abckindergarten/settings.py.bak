@@ -11,9 +11,15 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))# load environment variables from .env
+
+PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT, 'static')
+STATICFILES_DIRS = [ os.path.join(BASE_DIR, 'static'), ]
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
@@ -72,17 +78,21 @@ WSGI_APPLICATION = 'abckindergarten.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-# mysql://f1q1p2lfw99698du:texgbjt6n8iqe8ob@x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/yx0ggx28hv17q6mr
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': os.path.join('https://abckindergarten.herokuapp.com/static/db.sqlite3'),
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'yx0ggx28hv17q6mr',
-        'USER': 'f1q1p2lfw99698du',
-        'PASSWORD': 'texgbjt6n8iqe8ob',
-        'HOST': 'x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',  # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR,'static/db.sqlite3'),
     }
 }
+
 
 # DATABASES = {
 #     'default': {
@@ -97,9 +107,42 @@ DATABASES = {
 # }
 
 
+# import sys
+#
+# try:
+#     DATABASES = {}
+#
+#     DATABASES['default'] = DATABASES.get('default', {})
+#
+#     # Update with environment configuration.
+#     DATABASES['default'].update({
+#         'NAME': 'heroku_d2bde1094d343f0',
+#         'USER': 'b3b6f7652d3cbd',
+#         'PASSWORD': 'c3115111',
+#         'HOST': 'us-cdbr-iron-east-01.cleardb.net',
+#         'PORT': '3306',
+#     })
+#
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+#
+# except Exception:
+#     print('Unexpected error:', sys.exc_info())
 
-
-
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'heroku_d2bde1094d343f0',
+#         'USER': 'b3b6f7652d3cbd',
+#         'PASSWORD': 'c3115111',
+#         'HOST': 'us-cdbr-iron-east-01.cleardb.net',  # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'sql_mode': 'traditional',
+#             'connect_timeout': 50000,
+#
+#         }
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
@@ -134,4 +177,7 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
+
+
+django_heroku.settings(locals())
