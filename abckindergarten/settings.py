@@ -143,3 +143,5 @@ USE_TZ = True
 
 # if you use offline
 # django_heroku.settings(locals())
+
+ALLOWED_HOSTS = ['*']
