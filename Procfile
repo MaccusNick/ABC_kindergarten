@@ -1,3 +1,3 @@
-web: gunicorn abckindergarten.wsgi
+web: gunicorn abckindergarten.wsgi --log-file -
 
 
