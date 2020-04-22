@@ -73,6 +73,50 @@ WSGI_APPLICATION = 'abckindergarten.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'test01',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
+#         'PORT': '3306',
+#
+#     }
+# }
+
+
+# import sys
+#
+# try:
+#     DATABASES = {}
+#
+#     DATABASES['default'] = DATABASES.get('default', {})
+#
+#     # Update with environment configuration.
+#     DATABASES['default'].update({
+#         'NAME': 'heroku_d2bde1094d343f0',
+#         'USER': 'b3b6f7652d3cbd',
+#         'PASSWORD': 'c3115111',
+#         'HOST': 'us-cdbr-iron-east-01.cleardb.net',
+#         'PORT': '3306',
+#     })
+#
+#     DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
+#
+# except Exception:
+#     print('Unexpected error:', sys.exc_info())
+
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.mysql',
@@ -88,23 +132,6 @@ WSGI_APPLICATION = 'abckindergarten.wsgi.application'
 #         }
 #     }
 # }
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'test01',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': 'localhost',  # Or an IP Address that your DB is hosted on
-        'PORT': '3306',
-
-    }
-}
-
-
-
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
 
