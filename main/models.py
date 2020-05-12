@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 # Create your models here.
@@ -10,6 +11,7 @@ class Manager(models.Model):
 
     def __str__(self):
         return self.FirstName
+
 
 class Teacher(models.Model):
     manager = models.ForeignKey(Manager, on_delete=models.CASCADE)
@@ -42,15 +44,14 @@ class Camera(models.Model):
 
 
 class Parent(models.Model):
-    Parentid = models.AutoField(db_column='id', primary_key=True)
     FirstName = models.CharField(max_length=100)
     LastName = models.CharField(max_length=100)
     PhoneNumber = models.CharField(max_length=20)
     Email = models.CharField(max_length=20)
 
-    class Meta:
-        managed = False
-        db_table = 'main_parent'
+    # class Meta:
+    #     managed = False
+    #     db_table = 'main_parent'
 
 
 class Child(models.Model):
@@ -89,3 +90,10 @@ class Image(models.Model):
     ImageName = models.CharField(max_length=50)
     CreatedDate = models.DateField
     Description = models.TextField
+
+
+class Account(models.Model):
+    Email = models.CharField(max_length=20, unique=True)
+    UserName = models.CharField(max_length=100)
+    Password = models.CharField(max_length=100)
+    Created_at = models.DateTimeField(auto_now=True)
