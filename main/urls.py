@@ -1,15 +1,15 @@
-
 from django.urls import path, include
 from django.contrib import admin
 from django.contrib.auth import views as auth_views
 from . import views
 from knox import views as knox_views
 
-from .views import RegisterAPI, LoginAPI
+from .api import RegisterAPI, LoginAPI
 from rest_framework import routers
 from .api import AccountViewSet, ParentViewSet, ChildScheduleViewSet, ChildViewSet, TeacherViewSet, CameraViewSet
 from .api import TeacherScheduleViewSet, ClassroomViewSet, StoryViewSet, SickFormViewSet, PaymentViewSet, ImageViewSet
-from .api import ManagerViewSet, AnnouncementViewSet
+from .api import ManagerViewSet, AnnouncementViewSet, RegisterAPI
+
 router = routers.DefaultRouter()
 router.register('api/Account', AccountViewSet, 'Account')
 router.register('api/ParentView', ParentViewSet, 'Parent')
@@ -26,9 +26,14 @@ router.register('api/PaymentView', PaymentViewSet, 'Payment')
 router.register('api/ImageView', ImageViewSet, 'Image')
 router.register('api/ManagerView', ManagerViewSet, 'Manager')
 router.register('api/AnnouncementView', AnnouncementViewSet, 'Announcement')
+# router.register('api/RegisterAPI', RegisterAPI, 'Register')
 
-
-urlpatterns = router.urls
+urlpatterns = [
+    path('', include(router.urls)),
+    path('api/auth', include('knox.urls')),
+    path('api/auth/register', RegisterAPI.as_view()),
+    path('api/auth/login', LoginAPI.as_view())
+]
 
 # urlpatterns = [
 #     path("", views.index, name="index"),

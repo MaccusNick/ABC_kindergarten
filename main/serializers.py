@@ -1,6 +1,7 @@
 from django.contrib.auth.models import User
 from rest_framework import serializers
 from django.contrib.auth import authenticate
+from knox.models import AuthToken
 from .models import (
     Parent,
     Manager,
@@ -112,19 +113,19 @@ class UserSerializer(serializers.ModelSerializer):
 class RegisterSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        field = ('id', 'username', 'email', 'password')
+        fields = ('id', 'username', 'email', 'password')
         extra_kwargs = {'password': {'write_only': True}}
 
     def create(self, validated_data):
-        user = User.objects.create_user(validated_data['username'], validated_data['email'],
-                                        validated_data['password'])
+        user = User.objects.create_user(validated_data['username'], validated_data['email'], validated_data['password'])
+
         return user
 
 
 # Login
 
 
-class LoginSerializer(serializers.ModelSerializer):
+class LoginSerializer(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
 

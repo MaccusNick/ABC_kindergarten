@@ -17,7 +17,7 @@ from .models import (
 from rest_framework.response import Response
 from knox.models import AuthToken
 from rest_framework import viewsets, permissions, generics
-from .serializers import AccountSerializer, ParentSerializer, RegisterSerializer, UserSerializer, LoginSerializer
+from .serializers import AccountSerializer, ParentSerializer,  UserSerializer, RegisterSerializer, LoginSerializer
 from .serializers import ImageSerializer, PaymentSerializer, SickFormSerializer, StorySerializer
 from .serializers import ChildSerializer, CameraSerializer, ChildScheduleSerializer, ClassroomSerializer
 from .serializers import TeacherScheduleSerializer, TeacherSerializer, AnnouncementSerializer, ManagerSerializer
@@ -28,9 +28,12 @@ from .serializers import TeacherScheduleSerializer, TeacherSerializer, Announcem
 class AccountViewSet(viewsets.ModelViewSet):
     queryset = Account.objects.all()
     permission_classes = [
-        permissions.AllowAny
+        permissions.IsAuthenticated
     ]
     serializer_class = AccountSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(owner=self.request.user)
 
 
 class ParentViewSet(viewsets.ModelViewSet):
@@ -138,7 +141,7 @@ class ImageViewSet(viewsets.ModelViewSet):
 
 
 class RegisterAPI(generics.GenericAPIView):
-    serializers_class = RegisterSerializer
+    serializer_class = RegisterSerializer
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
@@ -146,7 +149,7 @@ class RegisterAPI(generics.GenericAPIView):
         user = serializer.save()
         return Response({
             "user": UserSerializer(user, context=self.get_serializer_context()).data,
-            "token": AuthToken.objects.create(user)
+            "token": AuthToken.objects.create(user)[1]
         })
 
 
@@ -155,10 +158,9 @@ class LoginAPI(generics.GenericAPIView):
 
     def post(self, request, *args, **kwargs):
         serializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_expection=True)
+        serializer.is_valid(raise_exception=True)
         user = serializer.validated_data
         return Response({
-            "user": UserSerializer(user,
-                                   context=self.get_serializer_context()).data,
-            "token": AuthToken.objects.create(user)
+            "user": UserSerializer(user, context=self.get_serializer_context()).data,
+            "token": AuthToken.objects.create(user)[1]
         })
