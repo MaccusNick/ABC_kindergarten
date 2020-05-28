@@ -26,73 +26,73 @@ class ParentSerializer(serializers.ModelSerializer):
         fields = '__all__'
 
 
-class ManagerSerializer(serializers.HyperlinkedModelSerializer):
+class ManagerSerializer(serializers.ModelSerializer):
     class Meta:
         model = Manager
         fields = '__all__'
 
 
-class TeacherSerializer(serializers.HyperlinkedModelSerializer):
+class TeacherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Teacher
         fields = '__all__'
 
 
-class AnnouncementSerializer(serializers.HyperlinkedModelSerializer):
+class AnnouncementSerializer(serializers.ModelSerializer):
     class Meta:
         model = Announcement
         fields = '__all__'
 
 
-class TeacherScheduleSerializer(serializers.HyperlinkedModelSerializer):
+class TeacherScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = TeacherSchedule
         fields = '__all__'
 
 
-class ClassroomSerializer(serializers.HyperlinkedModelSerializer):
+class ClassroomSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classroom
         fields = '__all__'
 
 
-class CameraSerializer(serializers.HyperlinkedModelSerializer):
+class CameraSerializer(serializers.ModelSerializer):
     class Meta:
         model = Camera
         fields = '__all__'
 
 
-class ChildSerializer(serializers.HyperlinkedModelSerializer):
+class ChildSerializer(serializers.ModelSerializer):
     class Meta:
         model = Child
         fields = '__all__'
 
 
-class ChildScheduleSerializer(serializers.HyperlinkedModelSerializer):
+class ChildScheduleSerializer(serializers.ModelSerializer):
     class Meta:
         model = ChildSchedule
         fields = '__all__'
 
 
-class StorySerializer(serializers.HyperlinkedModelSerializer):
+class StorySerializer(serializers.ModelSerializer):
     class Meta:
         model = Story
         fields = '__all__'
 
 
-class SickFormSerializer(serializers.HyperlinkedModelSerializer):
+class SickFormSerializer(serializers.ModelSerializer):
     class Meta:
         model = SickForm
         fields = '__all__'
 
 
-class PaymentSerializer(serializers.HyperlinkedModelSerializer):
+class PaymentSerializer(serializers.ModelSerializer):
     class Meta:
         model = Payment
         fields = '__all__'
 
 
-class ImageSerializer(serializers.HyperlinkedModelSerializer):
+class ImageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Image
         fields = '__all__'

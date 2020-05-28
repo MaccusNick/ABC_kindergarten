@@ -23,19 +23,19 @@ class Teacher(models.Model):
 
 class Announcement(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    Title = models.TextField
-    Content = models.TextField
-    Date = models.DateField
+    Title = models.TextField(blank=True, null=True)
+    Content = models.TextField(blank=True, null=True)
+    Date = models.DateTimeField(auto_now=False)
 
 
 class TeacherSchedule(models.Model):
     teacher = models.ForeignKey(Teacher, on_delete=models.CASCADE)
-    StartTime = models.DateField
+    StartTime = models.DateTimeField(auto_now=False)
 
 
 class Classroom(models.Model):
     tSchedule = models.ForeignKey(TeacherSchedule, on_delete=models.CASCADE)
-    Capacity = models.SmallIntegerField
+    Capacity = models.SmallIntegerField(default=22)
 
 
 class Camera(models.Model):
@@ -59,37 +59,37 @@ class Child(models.Model):
     classroom = models.ForeignKey(Classroom, on_delete=models.CASCADE)
     FirstName = models.CharField(max_length=100)
     LastName = models.CharField(max_length=100)
-    ChildStatus = models.BooleanField
+    ChildStatus = models.BooleanField(default=False)
 
 
 class ChildSchedule(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
-    StartTime = models.DateField
+    StartTime = models.DateTimeField(auto_now=False)
 
 
 class Story(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
-    StoryContent = models.TextField
-    CreateDate = models.DateField
+    StoryContent = models.TextField(blank=True, null=True)
+    CreateDate = models.DateTimeField(auto_now=False)
 
 
 class SickForm(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
-    FormTitle = models.CharField
-    FormContent = models.TextField
+    FormTitle = models.TextField(blank=True, null=True)
+    FormContent = models.TextField(blank=True, null=True)
 
 
 class Payment(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
-    PaymentTitle = models.TextField
-    PaymentStatus = models.BooleanField
+    PaymentTitle = models.TextField(blank=True, null=True)
+    PaymentStatus = models.BooleanField(default=False)
 
 
 class Image(models.Model):
     child = models.ForeignKey(Child, on_delete=models.CASCADE)
     ImageName = models.CharField(max_length=50)
-    CreatedDate = models.DateField
-    Description = models.TextField
+    CreatedDate = models.DateTimeField(auto_now=False)
+    Description = models.TextField(blank=True, null=True)
 
 
 class Account(models.Model):
