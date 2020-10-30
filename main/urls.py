@@ -9,6 +9,7 @@ from rest_framework import routers
 from .api import AccountViewSet, ParentViewSet, ChildScheduleViewSet, ChildViewSet, TeacherViewSet, CameraViewSet
 from .api import TeacherScheduleViewSet, ClassroomViewSet, StoryViewSet, SickFormViewSet, PaymentViewSet, ImageViewSet
 from .api import ManagerViewSet, AnnouncementViewSet, RegisterAPI
+from django.views.generic.base import TemplateView
 
 router = routers.DefaultRouter()
 router.register('api/Account', AccountViewSet, 'Account')
@@ -29,10 +30,11 @@ router.register('api/AnnouncementView', AnnouncementViewSet, 'Announcement')
 # router.register('api/RegisterAPI', RegisterAPI, 'Register')
 
 urlpatterns = [
-    path('', include(router.urls)),
+
     path('api/auth', include('knox.urls')),
     path('api/auth/register', RegisterAPI.as_view()),
-    path('api/auth/login', LoginAPI.as_view())
+    path('api/auth/login', LoginAPI.as_view()),
+    path('', TemplateView.as_view(template_name='index.html'))
 ]
 
 # urlpatterns = [
