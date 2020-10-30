@@ -71,7 +71,7 @@ ROOT_URLCONF = 'abckindergarten.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [
+        'DIneRS': [
                  os.path.join(BASE_DIR, 'dist')
                  ]
         ,
