@@ -169,6 +169,7 @@ STATICFILES_DIRS = [
 
 # if you use offline
 # django_heroku.settings(locals())
+#very
 
 ALLOWED_HOSTS = ['*']
 
