@@ -11,5 +11,10 @@
       <auth-provider>no-auth</auth-provider>
       <schema-mapping />
     </data-source>
+    <data-source name="Django default" uuid="a6cddfa8-9be2-4efd-8b4a-1cf55c52aee6">
+      <database-info product="" version="" jdbc-version="" driver-name="" driver-version="" dbms="MYSQL" exact-version="0" />
+      <user-name>f1q1p2lfw99698du</user-name>
+      <schema-mapping />
+    </data-source>
   </component>
 </project>

@@ -13,5 +13,13 @@
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
       <jdbc-url>jdbc:sqlite:C:\Users\maccu\PycharmProjects\abckindergarten\static\db.sqlite3</jdbc-url>
     </data-source>
+    <data-source source="LOCAL" name="Django default" uuid="a6cddfa8-9be2-4efd-8b4a-1cf55c52aee6">
+      <driver-ref>mysql.8</driver-ref>
+      <synchronize>true</synchronize>
+      <imported>true</imported>
+      <remarks>$PROJECT_DIR$/abckindergarten/settings.py</remarks>
+      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-url>jdbc:mysql://x3ztd854gaa7on6s.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/yx0ggx28hv17q6mr</jdbc-url>
+    </data-source>
   </component>
 </project>
